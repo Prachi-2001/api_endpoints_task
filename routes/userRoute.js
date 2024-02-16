@@ -1,9 +1,8 @@
-// src/routes/userRoutes.js
 const express = require("express");
 const router = express.Router();
 const userService = require("../services/userService");
 
-router.post("/users", async (req, res) => {
+router.post("/createUser", async (req, res) => {
   try {
     const newUser = await userService.createUser(req.body);
     res.status(201).json(newUser);
@@ -14,7 +13,7 @@ router.post("/users", async (req, res) => {
 });
 
 // List app Users with optional username filter
-router.get("/users", async (req, res) => {
+router.get("/getUsers", async (req, res) => {
   try {
     const { username } = req.query;
     const users = await userService.getUsers(username);

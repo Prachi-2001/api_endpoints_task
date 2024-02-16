@@ -25,9 +25,7 @@ const clientSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    // Add regex for phone number validation if needed
   },
-  // Add other client fields here
 });
 
 module.exports = mongoose.model("Client", clientSchema);

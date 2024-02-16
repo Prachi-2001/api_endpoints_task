@@ -1,27 +1,15 @@
-// server/models/Company.js
 const mongoose = require("mongoose");
 
-const companySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
+const companySchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    employees: { type: Number, required: true },
+    industry: { type: String, required: true },
+    users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
-  industry: {
-    type: String,
-    required: true,
-  },
-  employees: {
-    type: Number,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
-// Define inverse side relationship named 'users' to retrieve all users for the company
-companySchema.virtual("users", {
-  ref: "User",
-  localField: "_id",
-  foreignField: "company",
-});
+const Company = mongoose.model("Company", companySchema);
 
-module.exports = mongoose.model("Company", companySchema);
+module.exports = Company;
